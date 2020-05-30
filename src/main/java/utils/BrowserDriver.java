@@ -20,6 +20,7 @@ public class BrowserDriver {
                 System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
                 driver = new ChromeDriver();
                 driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+                driver.manage().window().maximize();
             } finally {
                 Runtime.getRuntime().addShutdownHook(new Thread(new BrowserCleanup()));
             }
@@ -44,7 +45,6 @@ public class BrowserDriver {
     }
 
     public static void loadPage(String url) {
-        getCurrentDriver();
         LOGGER.info("Directing browser to:" + url);
         LOGGER.info("try to loadPage [" + url + "]");
         getCurrentDriver().get(url);

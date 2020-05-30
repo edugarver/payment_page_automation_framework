@@ -2,8 +2,27 @@
 
 ## Test cases
 
-#### TC-001
-*Description:* The menu on the right side shows the correct data 
+####TC-001
+*Description:* User is able to successfully book a tour using Credit Card
+
+| **Step** | **Expected result** |
+|----------|---------------------|
+|||
+
+---
+
+####TC-002
+*Description:* User is able to successfully book a tour using PayPal
+
+| **Step** | **Expected result** |
+|----------|---------------------|
+|||
+
+---
+
+
+#### TC-003
+*Description:* Payment page shows the correct information 
 
 | **Step** | **Expected result** |
 |----------|---------------------|
@@ -15,23 +34,23 @@
 
 ---
 
-#### TC-002
-*Description:* Traveler details fields (first name and last name) are compulsory
+#### TC-004
+*Description:* Traveler details fields (first name and last name) are required
 
 | **Step** | **Expected result** |
 |----------|---------------------|
-|Fill the form, but leave the first name and last name fields empty|        |
+|Leave the first name and last name fields empty|        |
 |Click on the "Book Now" button on the right side |1. First and last name fields are highlighted in red<br>2. The text "Traveler first/last name is required" is displayed below each field|
 |Click on the "Book Now" button at the bottom|1. First and last name fields are highlighted in red<br>2. The text "Traveler first/last name is required" is displayed below each field|
 
 ---
 
-#### TC-003
+#### TC-005
 *Description:* Traveler details fields (first name and last name) data validation
 
 | **Step** | **Expected result** |
 |----------|---------------------|
-|First name 15 characters||
+|Set the first name field with a name of 15 characters||
 |First name more than 15 characters||
 |First name contains one of the following <code>^<>%;"0-9~`!@#$%&*()_+=</code>||
 |Last name 35 characters||
@@ -40,18 +59,18 @@
 
 ---
 
-#### TC-004
-*Description:* Contact information fields (email and phone number) are compulsory
+#### TC-006
+*Description:* Contact information fields (email and phone number) are required
 
 | **Step** | **Expected result** |
 |----------|---------------------|
-|Fill the form, but leave the email address field and the phone number field empty|                  |
+|Leave the email address field and the phone number field empty|                  |
 |Click on the "Book Now" button on the right side |1. Email and phone number fields are highlighted in red<br>2. The text "Email address/Phone number is required" is displayed below each field|
 |Click on the "Book Now" button at the bottom|1. Email and phone number fields are highlighted in red<br>2. The text "Email address/Phone number is required" is displayed below each field|
 
 ---
 
-#### TC-005
+#### TC-007
 *Description:* Contact information fields (email and phone number) data validation
 
 | **Step** | **Expected result** |
@@ -73,8 +92,8 @@
 
 ---
 
-#### TC-006
-*Description:* "Cardholder Name" field is compulsory when choosing "Credit card" as payment method
+#### TC-008
+*Description:* "Cardholder Name" field is required when choosing "Credit card" as payment method
 
 | **Step** | **Expected result** |
 |----------|---------------------|
@@ -85,7 +104,7 @@
 
 ---
 
-#### TC-007
+#### TC-009
 *Description:* "Cardholder Name" field data validation
 
 | **Step** | **Expected result** |
@@ -96,7 +115,7 @@
 
 ---
 
-#### TC-008
+#### TC-010
 *Description:* Credit card details are compulsory when choosing "Credit card" as payment method
 
 | **Step** | **Expected result** |
@@ -108,7 +127,7 @@
 
 ---
 
-#### TC-009
+#### TC-011
 *Description:* Credit card details data validation
 
 | **Step** | **Expected result** |
@@ -123,7 +142,7 @@
 
 ---
 
-#### TC-010
+#### TC-012
 *Description:* Login component
 
 | **Step** | **Expected result** |
@@ -134,7 +153,7 @@
 
 ---
 
-#### TC-011
+#### TC-013
 *Description:* Clicking on the "Chat Now" link opens the "Help Center"
 
 | **Step** | **Expected result** |
@@ -143,7 +162,7 @@
 
 ---
 
-#### TC-012
+#### TC-014
 *Description:* Selecting PayPal/Credit card as payment method
 
 | **Step** | **Expected result** |
@@ -154,7 +173,7 @@
 
 ---
 
-#### TC-013
+#### TC-015
 *Description:* "Promo code" section (invalid code)
 
 | **Step** | **Expected result** |
@@ -165,7 +184,7 @@
 
 ---
 
-#### TC-014
+#### TC-016
 *Description:* "Promo code" section (valid code)
 
 | **Step** | **Expected result** |
