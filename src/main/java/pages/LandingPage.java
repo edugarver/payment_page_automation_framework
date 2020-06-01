@@ -7,24 +7,28 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import utils.BrowserDriver;
 
+/**
+ * This class models the page to which we navigate at the beginning of each TC, where we decide the number of passengers for the tour
+ */
 public class LandingPage {
 
-    private static WebDriver driver = BrowserDriver.getCurrentDriver();
-    private WebDriverWait wait = new WebDriverWait(driver, 30000);
+    private WebDriver driver;
+    private WebDriverWait wait;
 
     @FindBy(css = "div.pax-input-box")
     private WebElement numberOfTravelersBox;
     @FindBy(id = "applyPaxButton")
     private WebElement applyButton;
 
-    public LandingPage() {
+    public LandingPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
+        this.driver = driver;
+        wait = new WebDriverWait(driver, 30000);
     }
 
     public void selectNumberOfTravelers() {
-         numberOfTravelersBox.click();
+        numberOfTravelersBox.click();
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {

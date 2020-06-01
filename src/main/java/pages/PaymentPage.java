@@ -1,18 +1,21 @@
 package pages;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.payment.LoginComponent;
 import pages.payment.PaymentDetailsComponent;
 import pages.payment.RightSideMenuComponent;
-import utils.BrowserDriver;
 
 /**
- * This class models the payment page as a whole
+ * This class models the payment page as a whole.
+ * In order to prevent this class to get too big, three sections of the page are modeled in different auxiliary classes: the right side menu, the login component, and the payment details.
  */
 public class PaymentPage {
 
@@ -23,8 +26,8 @@ public class PaymentPage {
     private static final String FIRST_NAME_TOO_LONG_ERROR_MESSAGE = "Traveler first name is too long";
     private static final String LAST_NAME_TOO_LONG_ERROR_MESSAGE = "Traveler last name is too long";
 
-    private static WebDriver driver = BrowserDriver.getCurrentDriver();
-    private WebDriverWait wait = new WebDriverWait(driver, 30000);
+    private WebDriver driver;
+    private WebDriverWait wait;
 
     /**
      * Components of Payment page
@@ -52,7 +55,7 @@ public class PaymentPage {
     @FindBy(id = "contactInfoEmail")
     private WebElement emailField;
     @FindBy(id = "phoneCountryCode")
-    private WebElement phoneCountryCodeDropdown;
+    private WebElement phoneCountryCodeField;
     @FindBy(id = "phoneNumber")
     private WebElement phoneNumberField;
     @FindBy(css = ".traveler-first-name .parsley-required")
@@ -67,12 +70,19 @@ public class PaymentPage {
     private WebElement firstNameTooLongErrorMessage;
     @FindBy(css = ".traveler-last-name .parsley-length")
     private WebElement lastNameTooLongErrorMessage;
+    @FindBy(css = "div.paypal-checkout-sandbox")
+    private WebElement paypalCheckoutOverlay;
+    @FindBy(css = "div.checkout-loading-screen")
+    private WebElement checkoutLoadingScreen;
 
-    public PaymentPage() {
+
+    public PaymentPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
-        rightSideMenuComponent = new RightSideMenuComponent();
-        loginComponent = new LoginComponent();
-        paymentDetailsComponent = new PaymentDetailsComponent();
+        this.driver = driver;
+        wait = new WebDriverWait(driver, 30000);
+        rightSideMenuComponent = new RightSideMenuComponent(driver);
+        loginComponent = new LoginComponent(driver);
+        paymentDetailsComponent = new PaymentDetailsComponent(driver);
     }
 
     public boolean isTravelerDetailsSectionDisplayed() {
@@ -87,7 +97,7 @@ public class PaymentPage {
 
     public boolean isContactInformationDetailsSectionDisplayed() {
         wait.until(ExpectedConditions.visibilityOf(bookNowButton));
-        return emailField.isDisplayed() && phoneCountryCodeDropdown.isDisplayed() && phoneNumberField.isDisplayed();
+        return emailField.isDisplayed() && phoneNumberField.isDisplayed();
     }
 
     public void setFirstNameField(String firstName) {
@@ -100,7 +110,24 @@ public class PaymentPage {
         lastNameField.sendKeys(lastName);
     }
 
+    public void setEmailField(String email) {
+        emailField.clear();
+        emailField.sendKeys(email);
+    }
+
+    public void setPhoneNumberField(String phoneNumber) {
+        phoneNumberField.clear();
+        phoneNumberField.sendKeys(phoneNumber);
+    }
+
+    public void setPhoneCountryCode(String countryCode) {
+        Select phoneCountryCodeDropdown = new Select(phoneCountryCodeField);
+        phoneCountryCodeDropdown.selectByValue(countryCode);
+    }
+
     public void clickOnBookNowButton() {
+        wait.until(ExpectedConditions.elementToBeClickable(bookNowButton));
+        bookNowButton.click();
         bookNowButton.click();
     }
 
@@ -154,5 +181,24 @@ public class PaymentPage {
 
     public boolean isPaymentDetailsSectionDisplayed() {
         return paymentDetailsSection.getAttribute("class").contains("d-block");
+    }
+
+    public void clickOnPayWithPayPalButton() {
+        driver.switchTo().frame(driver.findElement(By.cssSelector("iframe[title='ppbutton']")));
+        WebElement payPalButtonInFrame = driver.findElement(By.cssSelector("div.paypal-button"));
+        JavascriptExecutor executor = (JavascriptExecutor) driver;
+        executor.executeScript("arguments[0].click();", payPalButtonInFrame);
+        executor.executeScript("arguments[0].click();", payPalButtonInFrame);
+        driver.switchTo().defaultContent();
+    }
+
+    public boolean isPayPalCheckoutOverlayDisplayed() {
+        wait.until(ExpectedConditions.visibilityOf(paypalCheckoutOverlay));
+        return paypalCheckoutOverlay.isDisplayed();
+    }
+
+    public boolean isCheckoutLoadingScreenDisplayed() {
+        wait.until(ExpectedConditions.visibilityOf(checkoutLoadingScreen));
+        return checkoutLoadingScreen.getAttribute("class").contains("d-block");
     }
 }

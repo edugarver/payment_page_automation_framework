@@ -4,13 +4,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import utils.BrowserDriver;
 
+/**
+ * Class that models the right side menu
+ */
 public class RightSideMenuComponent {
-
-    private static WebDriver driver = BrowserDriver.getCurrentDriver();
-    private WebDriverWait wait = new WebDriverWait(driver, 30000);
 
     @FindBy(id = "rightHandRailItinerary")
     private WebElement rightSideMenu;
@@ -20,7 +18,7 @@ public class RightSideMenuComponent {
     private WebElement promoCodeField;
     @FindBy(id = "promoCodeApplyButton")
     private WebElement promoCodeApplyButton;
-    @FindBy(id = "bookNowBtnRight")
+    @FindBy(css = "#rightHandRail .bookNow")
     private WebElement bookNowRightButton;
     @FindBy(css = "#rightHandRail .paypalButtonContainer")
     private WebElement paypalRightButton;
@@ -28,12 +26,10 @@ public class RightSideMenuComponent {
     private WebElement chatNowLink;
     @FindBy(className = "helpCentreShellMain")
     private WebElement helpCenter;
-    @FindBy(className = "hcIconCollapse")
-    private WebElement helpCenterCloseButton;
     @FindBy(id = "promoCodeError")
     private WebElement promoCodeErrorMessage;
 
-    public RightSideMenuComponent() {
+    public RightSideMenuComponent(WebDriver driver) {
         PageFactory.initElements(driver, this);
     }
 
@@ -80,5 +76,9 @@ public class RightSideMenuComponent {
 
     public boolean isInvalidPromoCodeErrorMessageDisplayed() {
         return promoCodeErrorMessage.isDisplayed();
+    }
+
+    public String getTourInformation() {
+        return rightSideMenu.getText();
     }
 }

@@ -5,16 +5,19 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import utils.BrowserDriver;
 
+/**
+ * Class that models the payment details, which includes the radio buttons for selecting the payment method and the credit card details fields.
+ */
 public class PaymentDetailsComponent {
 
     private static final String PAYPAL = "PayPal";
     private static final String CREDIT_CARD = "CreditCard";
 
-    private static WebDriver driver = BrowserDriver.getCurrentDriver();
-    private WebDriverWait wait = new WebDriverWait(driver, 30000);
+    private WebDriver driver;
+    private WebDriverWait wait;
 
     // Payment details
     @FindBy(id = "creditCard")
@@ -22,18 +25,20 @@ public class PaymentDetailsComponent {
     @FindBy(id = "paypal")
     private WebElement paypalRadioButton;
     @FindBy(id = "paymentInfoFullName")
-    private WebElement cardholderName;
+    private WebElement cardholderNameField;
     @FindBy(id = "creditCard")
-    private WebElement creditCardNumber;
+    private WebElement creditCardNumberField;
     @FindBy(id = "expiryDateMonth")
-    private WebElement expiryDateMonthDropdown;
+    private WebElement expiryDateMonth;
     @FindBy(id = "expiryDateYear")
-    private WebElement expiryDateYearDropdown;
+    private WebElement expiryDateYear;
     @FindBy(id = "securityCode")
     private WebElement securityCodeField;
 
-    public PaymentDetailsComponent() {
+    public PaymentDetailsComponent(WebDriver driver) {
         PageFactory.initElements(driver, this);
+        this.driver = driver;
+        wait = new WebDriverWait(driver, 30000);
     }
 
     public boolean isDisplayed() {
@@ -42,16 +47,40 @@ public class PaymentDetailsComponent {
     }
 
     public void selectPaymentMethod(String paymentMethod) {
-        if (paymentMethod.equalsIgnoreCase(CREDIT_CARD)) {
+        if (CREDIT_CARD.equalsIgnoreCase(paymentMethod)) {
             creditCardRadioButton.click();
-        } else if (paymentMethod.equalsIgnoreCase(PAYPAL)) {
+        } else if (PAYPAL.equalsIgnoreCase(paymentMethod)) {
             paypalRadioButton.click();
-        }
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
         }
     }
 
+    public void setCardholderNameField(String cardholderName) {
+        cardholderNameField.sendKeys(cardholderName);
+    }
+
+    public void setCreditCardNumberField(String creditCardNumber) {
+        driver.switchTo().frame("checkoutCDEIFrame");
+        creditCardNumberField.sendKeys(creditCardNumber);
+        driver.switchTo().defaultContent();
+    }
+
+    public void setExpiryDateMonth(String month) {
+        driver.switchTo().frame("checkoutCDEIFrame");
+        Select expiryDateMonthDropdown = new Select(expiryDateMonth);
+        expiryDateMonthDropdown.selectByValue(month);
+        driver.switchTo().defaultContent();
+    }
+
+    public void setExpiryDateYear(String year) {
+        driver.switchTo().frame("checkoutCDEIFrame");
+        Select expiryDateYearDropdown = new Select(expiryDateYear);
+        expiryDateYearDropdown.selectByValue(year);
+        driver.switchTo().defaultContent();
+    }
+
+    public void setSecurityCodeField(String securityCode) {
+        driver.switchTo().frame("checkoutCDEIFrame");
+        securityCodeField.sendKeys(securityCode);
+        driver.switchTo().defaultContent();
+    }
 }

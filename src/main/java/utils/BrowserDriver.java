@@ -2,52 +2,38 @@ package utils;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.remote.UnreachableBrowserException;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Logger;
 
 /**
- * Class used to manage the webdriver during the execution of the test
+ * Utility class to help manage the creation of drivers
  */
 public class BrowserDriver {
-    private static final Logger LOGGER = Logger.getLogger(BrowserDriver.class.getName());
-    private static WebDriver driver;
 
-    public synchronized static WebDriver getCurrentDriver() {
-        if (driver == null) {
-            try {
-                System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
-                driver = new ChromeDriver();
-                driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-                driver.manage().window().maximize();
-            } finally {
-                Runtime.getRuntime().addShutdownHook(new Thread(new BrowserCleanup()));
-            }
-        }
+    /**
+     * This method creates an instance of ChromeDriver using the provided executable
+     * @return a webdriver instance
+     */
+    public static WebDriver getDriver() {
+        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
+        WebDriver driver = new ChromeDriver();
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        driver.manage().window().maximize();
         return driver;
     }
 
-    private static class BrowserCleanup implements Runnable {
-        public void run() {
-            close();
-        }
+    /**
+     * This method creates a remote driver to be used with Selenium Grid
+     * @return a remote webdriver instance
+     * @throws MalformedURLException
+     */
+    public static WebDriver getRemoteDriver() throws MalformedURLException {
+        ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.setCapability("browserName", "chrome");
+        return new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), chromeOptions);
     }
-
-    public static void close() {
-        try {
-            getCurrentDriver().quit();
-            driver = null;
-            LOGGER.info("closing the browser");
-        } catch (UnreachableBrowserException e) {
-            LOGGER.info("cannot close browser: unreachable browser");
-        }
-    }
-
-    public static void loadPage(String url) {
-        LOGGER.info("Directing browser to:" + url);
-        LOGGER.info("try to loadPage [" + url + "]");
-        getCurrentDriver().get(url);
-    }
-
 }

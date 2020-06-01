@@ -6,12 +6,13 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import utils.BrowserDriver;
 
+/**
+ * Class that models the Login Component, along with the login link that makes this component to be visible
+ */
 public class LoginComponent {
 
-    private static WebDriver driver = BrowserDriver.getCurrentDriver();
-    private WebDriverWait wait = new WebDriverWait(driver, 30000);
+    private WebDriverWait wait;
 
     @FindBy(css = "#loginContent a")
     private WebElement loginLink;
@@ -26,8 +27,9 @@ public class LoginComponent {
     @FindBy(id = "loginError")
     private WebElement loginErrorMessage;
 
-    public LoginComponent() {
+    public LoginComponent(WebDriver driver) {
         PageFactory.initElements(driver, this);
+        wait = new WebDriverWait(driver, 30000);
     }
 
     public boolean isDisplayed() {
@@ -53,18 +55,17 @@ public class LoginComponent {
         showPasswordButton.click();
     }
 
-    public boolean isPasswordVisible() {
-        return passwordField.getAttribute("type").equalsIgnoreCase("text");
+    public void clickOnLoginButton() {
+        loginButton.click();
     }
 
-    public void setWrongLoginCredentials() {
-        setLoginEmailField("wrongemail");
-        setPasswordField("wrongpassword");
-        loginButton.click();
+    public boolean isPasswordVisible() {
+        return passwordField.getAttribute("type").equalsIgnoreCase("text");
     }
 
     public boolean isLoginErrorMessageDisplayed() {
         wait.until(ExpectedConditions.visibilityOf(loginErrorMessage));
         return loginErrorMessage.isDisplayed();
     }
+
 }
