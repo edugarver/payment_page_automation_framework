@@ -50,7 +50,7 @@ The following test cases were automated:<br>
 
 ## Test cases
 
-####TC-001: User is able to successfully book a tour using Credit Card
+###TC-001: User is able to successfully book a tour using Credit Card
 | **Step** | **Expected result** |
 |----------|---------------------|
 |Fill the form with valid data|No error message should be displayed on any field|
@@ -58,7 +58,7 @@ The following test cases were automated:<br>
 
 ---
 
-####TC-002: User is able to successfully book a tour using PayPal
+###TC-002: User is able to successfully book a tour using PayPal
 | **Step** | **Expected result** |
 |----------|---------------------|
 |Select "PayPal" as payment method|1. "Credit card details" fields should be hidden<br>2. "Book Now" buttons are replaced with "Pay with PayPal" buttons|
@@ -68,7 +68,7 @@ The following test cases were automated:<br>
 ---
 
 
-#### TC-003: Payment page shows the correct fields and tour information 
+### TC-003: Payment page shows the correct fields and tour information 
 | **Step** | **Expected result** |
 |----------|---------------------|
 |Check the right side menu|1. The tour name, date, time, and number of people displayed are the ones that were selected<br>2. The "Add promo code" link is displayed<br>3. The "Book Now" button is displayed|
@@ -79,7 +79,7 @@ The following test cases were automated:<br>
 
 ---
 
-#### TC-004: Traveler details fields (first name and last name) are required
+### TC-004: Traveler details fields (first name and last name) are required
 | **Step** | **Expected result** |
 |----------|---------------------|
 |Leave the "first name" and "last name" fields empty|        |
@@ -87,7 +87,7 @@ The following test cases were automated:<br>
 
 ---
 
-#### TC-005: Traveler details fields (first name and last name) data validation
+### TC-005: Traveler details fields (first name and last name) data validation
 | **Step** | **Expected result** |
 |----------|---------------------|
 |Set the "first name" field with an alphabetic string of 15 characters (max length)|The "first name" appears as valid|
@@ -96,9 +96,10 @@ The following test cases were automated:<br>
 |Set the "last name" field with an alphabetic string of 35 characters (max length)|The "last name" appears as valid|
 |Set the "last name" field with an alphabetic string of more than 35 characters|1. Field is highlighted in red<br>2. The message "Traveler last name is too long" is displayed below the field|
 |Set the "last name" field with a string containing a digit and/or one of the following characters <code>^<>%;"~`!@#$%&*()_+=</code>|1. Field is highlighted in red<br>2. The message "Traveler last name is invalid" is displayed below the field|
+
 ---
 
-#### TC-006: Contact information fields (email and phone number) are required
+### TC-006: Contact information fields (email and phone number) are required
 | **Step** | **Expected result** |
 |----------|---------------------|
 |Leave the "email address" field and the "phone number" field empty|                  |
@@ -107,7 +108,7 @@ The following test cases were automated:<br>
 
 ---
 
-#### TC-007: Contact information fields (email and phone number) data validation
+### TC-007: Contact information fields (email and phone number) data validation
 | **Step** | **Expected result** |
 |----------|---------------------|
 |Type non-numeric characters in the phone number field|No characters are input|
@@ -118,7 +119,7 @@ The following test cases were automated:<br>
 
 ---
 
-#### TC-008: "Cardholder Name" field is required when choosing "Credit card" as payment method
+### TC-008: "Cardholder Name" field is required when choosing "Credit card" as payment method
 | **Step** | **Expected result** |
 |----------|---------------------|
 |Select "Credit card" as the payment method | "Credit card details" fields are displayed|
@@ -128,7 +129,7 @@ The following test cases were automated:<br>
 
 ---
 
-#### TC-009: "Cardholder Name" field data validation
+### TC-009: "Cardholder Name" field data validation
 | **Step** | **Expected result** |
 |----------|---------------------|
 |Set the "Cardholder Name" field with a string containing a digit and/or one of the following characters <code>^<>%;"0-9~`!@#$%&*()_+=</code>|1. The field is highlighted in red<br>2. The message "Credit card full name is invalid" is displayed below the field|
@@ -137,7 +138,7 @@ The following test cases were automated:<br>
 
 ---
 
-#### TC-010: Credit card details are compulsory when choosing "Credit card" as payment method
+### TC-010: Credit card details are compulsory when choosing "Credit card" as payment method
 | **Step** | **Expected result** |
 |----------|---------------------|
 |Select "Credit card" as the payment method | "Credit card details" fields are displayed|
@@ -147,7 +148,7 @@ The following test cases were automated:<br>
 
 ---
 
-#### TC-011: Credit card details data validation
+### TC-011: Credit card details data validation
 | **Step** | **Expected result** |
 |----------|---------------------|
 |Try to input non-numeric chars in the "Credit Card Number" field|No characters are inputted|
@@ -159,7 +160,7 @@ The following test cases were automated:<br>
 
 ---
 
-#### TC-012: Login link and login component basic functionality
+### TC-012: Login link and login component basic functionality
 | **Step** | **Expected result** |
 |----------|---------------------|
 |Click on "Sign in to book faster" link|The following elements are displayed:<br>1. "Email" and "Password" fields<br>2."Forgot password" link<br>3. "Show password" button<br>4. "Log in" button|
@@ -169,14 +170,14 @@ The following test cases were automated:<br>
 
 ---
 
-#### TC-013: Clicking on the "Chat Now" link opens the "Help Center"
+### TC-013: Clicking on the "Chat Now" link opens the "Help Center"
 | **Step** | **Expected result** |
 |----------|---------------------|
 |Click on the "Chat now" button at the bottom of the right side menu|The "Help Center" shell is displayed over the right side menu|
 
 ---
 
-#### TC-014: Selecting PayPal/Credit card as payment method
+### TC-014: Selecting PayPal/Credit card as payment method
 | **Step** | **Expected result** |
 |----------|---------------------|
 |Check the "Payment details" section|By default, the "Credit Card" radio button is selected, and the "Credit card details" fields are displayed|
@@ -185,7 +186,7 @@ The following test cases were automated:<br>
 
 ---
 
-#### TC-015: "Promo code" section (invalid code)
+### TC-015: "Promo code" section (invalid code)
 | **Step** | **Expected result** |
 |----------|---------------------|
 |Click on the "Add promo code" link|1. The "Promo code" field is displayed<br> 2. The "Apply" button is displayed and disabled|
@@ -194,7 +195,7 @@ The following test cases were automated:<br>
 
 ---
 
-#### TC-016: "Promo code" section (valid code)
+### TC-016: "Promo code" section (valid code)
 | **Step** | **Expected result** |
 |----------|---------------------|
 |Click on the "Add promo code" link|1. The "Promo code" field is displayed<br> 2. The "Apply" button is displayed and disabled|
