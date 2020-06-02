@@ -41,7 +41,7 @@ This property can be changed to point at whichever chromedriver or Selenium Hub 
 1. On a terminal, navigate to the folder of the project
 2. Type `mvn clean test` on the terminal
 <br>
-That should run all the test cases in `TestBase`<br>
+That should run all the test cases in `TestBase` <br>
 
 The following test cases were automated:<br>
 - TC-001: User is able to successfully book a tour using Credit Card<br>
