@@ -79,7 +79,7 @@ public class PaymentPage {
     public PaymentPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
         this.driver = driver;
-        wait = new WebDriverWait(driver, 30000);
+        wait = new WebDriverWait(driver, 30);
         rightSideMenuComponent = new RightSideMenuComponent(driver);
         loginComponent = new LoginComponent(driver);
         paymentDetailsComponent = new PaymentDetailsComponent(driver);

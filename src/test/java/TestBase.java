@@ -16,19 +16,15 @@ public class TestBase {
 
     /**
      * This method will execute before each test, and it will:
-     * 1. navigate to the tour url
-     * 2. select the needed data in order to start the TC
-     * 3. navigate to tne payment page
+     * 1. Create an instance of a driver, local or remote, depending on what was specified on the testdata.properties file
+     * 2. navigate to the tour url
+     * 3. select the needed data in order to start the TC
+     * 4. navigate to tne payment page
      */
     @BeforeEach
     public void setUp() {
         testData = new TestData("testdata.properties");
-        driver = BrowserDriver.getDriver();
-//        try {
-//            driver = BrowserDriver.getRemoteDriver();
-//        } catch (MalformedURLException e) {
-//            e.printStackTrace();
-//        }
+        driver = BrowserDriver.getDriver(testData.getDriverLocation());
         driver.get(testData.getUrl());
         LandingPage landingPage = new LandingPage(driver);
         landingPage.selectNumberOfTravelers();
@@ -52,22 +48,6 @@ public class TestBase {
         paymentPage.clickOnBookNowButton();
         Assertions.assertTrue(paymentPage.isCheckoutLoadingScreenDisplayed(),
                 "The checkout loading screen is not displayed, but it should be");
-    }
-
-    @Disabled
-    @Test
-    @DisplayName("TC-002: User is able to successfully book a tour using PayPal")
-    public void tc002_successfulBookingWithPayPal() {
-        PaymentPage paymentPage = new PaymentPage(driver);
-        paymentPage.paymentDetailsComponent.selectPaymentMethod("paypal");
-        paymentPage.setFirstNameField(testData.getValidDataFirstName());
-        paymentPage.setLastNameField(testData.getValidDataLastName());
-        paymentPage.setEmailField(testData.getValidDataEmail());
-        paymentPage.setPhoneCountryCode(testData.getValidCountryCode());
-        paymentPage.setPhoneNumberField(testData.getValidDataPhoneNumber());
-        paymentPage.clickOnPayWithPayPalButton();
-        Assertions.assertTrue(paymentPage.isPayPalCheckoutOverlayDisplayed(),
-                "The PayPal checkout overlay is not displayed, but it should be");
     }
 
     @Test

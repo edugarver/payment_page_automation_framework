@@ -29,7 +29,7 @@ public class LoginComponent {
 
     public LoginComponent(WebDriver driver) {
         PageFactory.initElements(driver, this);
-        wait = new WebDriverWait(driver, 30000);
+        wait = new WebDriverWait(driver, 30);
     }
 
     public boolean isDisplayed() {

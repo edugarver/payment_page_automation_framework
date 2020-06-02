@@ -38,7 +38,7 @@ public class PaymentDetailsComponent {
     public PaymentDetailsComponent(WebDriver driver) {
         PageFactory.initElements(driver, this);
         this.driver = driver;
-        wait = new WebDriverWait(driver, 30000);
+        wait = new WebDriverWait(driver, 30);
     }
 
     public boolean isDisplayed() {

@@ -7,7 +7,8 @@ For the automation of the TCs, you can find in this repository an automation fra
 ## Prerequisites
 In order to execute the TCs, the following has to be installed:
 1. maven: the tests are executed as a maven goal, so it's compulsory to have it installed
-2. selenium grid: the hub and a node need to be running in order to execute the TCs there
+2. (Optional) selenium grid: the hub and a node need to be running in order to execute the TCs there
+3. (Optional) chromedriver
 
 ## Structure of the project
 `src/main/java/pages` contains all the classes that model the pages of the application. The main classes are `PaymentPage` and `NavigationPage`. Inside this package we can also find the package `payment`, which contains other three classes that model different sections of the Payment page<br>
@@ -16,7 +17,18 @@ In order to execute the TCs, the following has to be installed:
 `src/test/java` contains the class `TestBase`, which is the class that has all the automated test cases
 
 ## Configuration of framework
-
+The testdata.properties file contains a property called driver.location. This property is then used by the BrowserDriver class to create a local webdriver or a remote webdriver, on Selenium Grid.
+By default, I included the following:
+```properties
+# Driver properties - uncomment the driver location that will be used for the execution
+# local driver
+driver.location=src/main/resources/chromedriver
+#remote driver
+#driver.location=http://localhost:4444/wd/hub
+```
+The uncommented driver.location points to the chromedriver that is included on this repo. Please, note that it is the macOS version of chrome driver.<br>
+The commented driver.location points to the default location from Selenium Hub.<br>
+This property can be changed to point at whichever chromedriver or Selenium Hub location that is needed.
 
 ## Execution of Test Cases
 1. On a terminal, navigate to the folder of the project

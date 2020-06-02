@@ -8,6 +8,7 @@ import java.util.Properties;
  * Utility class that models the test data that comes in the testdata.properties file
  */
 public class TestData {
+    private String driverLocation;
     private String url;
     private String tourInformation;
     private String wrongDataEmail;
@@ -27,6 +28,10 @@ public class TestData {
     private String invalidDataCharacters;
     private String invalidDataFirstNameLength;
     private String invalidDataLastNameLength;
+
+    public String getDriverLocation() {
+        return driverLocation;
+    }
 
     public String getUrl() {
         return url;
@@ -113,6 +118,7 @@ public class TestData {
             } else {
                 throw new FileNotFoundException();
             }
+            this.driverLocation = properties.getProperty("driver.location");
             this.url = properties.getProperty("url");
             this.tourInformation = properties.getProperty("tourInformation");
             this.wrongDataEmail = properties.getProperty("wrongData.email");
