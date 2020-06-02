@@ -17,8 +17,8 @@ In order to execute the TCs, the following has to be installed:
 `src/test/java` contains the class `TestBase`, which is the class that has all the automated test cases
 
 ## Configuration of framework
-The testdata.properties file contains a property called driver.location. This property is then used by the BrowserDriver class to create a local webdriver or a remote webdriver, on Selenium Grid.
-By default, I included the following:
+The `testdata.properties` file contains a property called `driver.location`. This property is then used by the `BrowserDriver` class to create a local webdriver or a remote webdriver, on Selenium Grid.
+By default, the following was included:
 ```properties
 # Driver properties - uncomment the driver location that will be used for the execution
 # local driver
@@ -26,8 +26,8 @@ driver.location=src/main/resources/chromedriver
 #remote driver
 #driver.location=http://localhost:4444/wd/hub
 ```
-The uncommented driver.location points to the chromedriver that is included on this repo. Please, note that it is the macOS version of chrome driver.<br>
-The commented driver.location points to the default location from Selenium Hub.<br>
+The uncommented `driver.location` points to the chromedriver that is included on this repo. Please, note that it is the **macOS version** of chrome driver.<br>
+The commented `driver.location` points to the default location from Selenium Hub.<br>
 This property can be changed to point at whichever chromedriver or Selenium Hub location that is needed.
 
 ## Execution of Test Cases
@@ -37,14 +37,14 @@ This property can be changed to point at whichever chromedriver or Selenium Hub 
 That should run all the test cases in `TestBase`<br>
 
 The following test cases were automated:<br>
-TC-001: User is able to successfully book a tour using Credit Card<br>
-TC-003: Payment page shows the correct fields and tour information<br>
-TC-004: Traveler details fields (first name and last name) are required<br>
-TC-005: Traveler details fields (first name and last name) data validation<br>
-TC-012: Login link and login component basic functionality<br>
-TC-013: Clicking on the "Chat Now" link opens the "Help Center"<br>
-TC-014: Selecting PayPal/Credit card as payment method<br>
-TC-015: "Promo code" section (invalid code)<br>
+- TC-001: User is able to successfully book a tour using Credit Card<br>
+- TC-003: Payment page shows the correct fields and tour information<br>
+- TC-004: Traveler details fields (first name and last name) are required<br>
+- TC-005: Traveler details fields (first name and last name) data validation<br>
+- TC-012: Login link and login component basic functionality<br>
+- TC-013: Clicking on the "Chat Now" link opens the "Help Center"<br>
+- TC-014: Selecting PayPal/Credit card as payment method<br>
+- TC-015: "Promo code" section (invalid code)<br>
 
 ---
 
