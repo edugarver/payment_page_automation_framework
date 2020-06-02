@@ -50,7 +50,7 @@ The following test cases were automated:<br>
 
 ## Test cases
 
-###TC-001: User is able to successfully book a tour using Credit Card
+### TC-001: User is able to successfully book a tour using Credit Card
 | **Step** | **Expected result** |
 |----------|---------------------|
 |Fill the form with valid data|No error message should be displayed on any field|
@@ -58,7 +58,7 @@ The following test cases were automated:<br>
 
 ---
 
-###TC-002: User is able to successfully book a tour using PayPal
+### TC-002: User is able to successfully book a tour using PayPal
 | **Step** | **Expected result** |
 |----------|---------------------|
 |Select "PayPal" as payment method|1. "Credit card details" fields should be hidden<br>2. "Book Now" buttons are replaced with "Pay with PayPal" buttons|
