@@ -1,6 +1,6 @@
-# ipresence_practicaltest
+# Viator payment page tests
 
-The iPresence practical test consisted on writing a series of Test Cases and automating some of them.
+This project consists on writing a series of Test Cases and automating some of them, in order to test the Viator payment page
 The Test cases can be found at the end of this document.<br>
 For the automation of the TCs, you can find in this repository an automation framework that was written using the Page Object Model design pattern; it's a maven project that uses Java, JUnit and Selenium.
 
