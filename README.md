@@ -4,6 +4,13 @@ This project consists on writing a series of Test Cases and automating some of t
 The Test cases can be found at the end of this document.<br>
 For the automation of the TCs, you can find in this repository an automation framework that was written using the Page Object Model design pattern; it's a maven project that uses Java, JUnit and Selenium.
 
+## Table of contents
+- [Prerequisites](#prerequisites)
+- [Structure of the project](#structure-of-the-project)
+- [Configuration of framework](#configuration-of-framework)
+- [Execution of Test Cases](#execution-of-test-cases)
+- [Test cases](#test-cases)
+
 ## Prerequisites
 In order to execute the TCs, the following has to be installed:
 1. maven: the tests are executed as a maven goal, so it's compulsory to have it installed
